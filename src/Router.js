@@ -7,7 +7,7 @@ import styled from "styled-components";
 // import Header from "./components/Header";
 // import Footer from "./components/Footer";
 import Home from "./pages/Home";
-import RootContext from "./context/root-context";
+import GlobalState from "./context/globalState";
 
 const AppWrapper = styled.div`
   /* max-width: 1170px; */
@@ -25,26 +25,8 @@ const AppWrapper = styled.div`
 
 const Routing = (_) => {
 
-    const [userDetails, setUserDetails] = useState({
-        name: "fayez",
-        age: 26,
-        gender: "male"
-    });
-
-    const updateUserDetails = (details) => {
-        const temporarayDetails = JSON.parse(JSON.stringify(userDetails));
-
-            temporarayDetails.name = details;
-            setUserDetails(temporarayDetails);
-        console.log("hey this is working.Congrats" , temporarayDetails.name);
-    };
-
-
     return (
-        <RootContext.Provider value={{
-            userDetails ,
-            updateUserDetails
-        }}>
+        <GlobalState>
             <AppWrapper>
                 <Helmet titleTemplate="%s - " defaultTitle="">
                     <meta name="description" content="" />
@@ -57,7 +39,7 @@ const Routing = (_) => {
                 </Router>
                 {/* <Footer /> */}
             </AppWrapper>
-        </RootContext.Provider>
+        </GlobalState>
     )
 }
 
